@@ -37,11 +37,7 @@
         <field name="model">demo.demo</field>
         <field name="arch" type="xml">
             <form string="Demo Form">
-<!--                <button string="FINDME" type="action" name="form_view_auto_fill"-->
-<!--                        states="draft" class="oe_stat_button"/>-->
                 <sheet>
-<!--                    <button string="FINDME" type="action" name="form_view_auto_fill"-->
-<!--                            states="draft" class="oe_stat_button"/>-->
                     <group>
                         <field name="customer"/>
                         <field name="done_date"/>
