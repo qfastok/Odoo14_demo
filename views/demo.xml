@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="demo_list_action">
+        <field name="name">Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">demo.demo</field>
+        <field name="view_mode">list,kanban,search,form</field>
+    </record>
+
+
+    <menuitem name="Demo"
+              id="main_demo_menu"
+              sequence="0"/>
+
+    <menuitem id="demo_courses_menu" name="New Demo"
+              parent="main_demo_menu" action="demo_list_action"/>
+
+    <!--tree of demo model-->
+    <record model="ir.ui.view" id="demo_tree_view">
+        <field name="name">demo.tree</field>
+        <field name="model">demo.demo</field>
+        <field name="arch" type="xml">
+            <tree string="Demo">
+                <field name="customer"/>
+                <field name="name"/>
+                <field name="done_date"/>
+                <field name="saleperson"/>
+                <field name="lead"/>
+                <field name="state" widget="state_selection"/>
+
+            </tree>
+        </field>
+    </record>
+    <!--form of demo model-->
+    <record model="ir.ui.view" id="demo_form_view">
+        <field name="name">demo.form</field>
+        <field name="model">demo.demo</field>
+        <field name="arch" type="xml">
+            <form string="Demo Form">
+<!--                <button string="FINDME" type="action" name="form_view_auto_fill"-->
+<!--                        states="draft" class="oe_stat_button"/>-->
+                <sheet>
+<!--                    <button string="FINDME" type="action" name="form_view_auto_fill"-->
+<!--                            states="draft" class="oe_stat_button"/>-->
+                    <group>
+                        <field name="customer"/>
+                        <field name="done_date"/>
+                        <field name="name" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="lead"/>
+                        <field name="saleperson"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="demo_search" model="ir.ui.view">
+        <field name="name">demo.search</field>
+        <field name="model">demo.demo</field>
+        <field name="arch" type="xml">
+            <search string="Demo Search">
+                <field name="customer"/>
+                <field name="lead"/>
+                <field name="name"/>
+                <filter string="My demos" name="my_demos" domain="[('customer','=', 'My demos')]"/>
+                <group expand="1" string="Group By">
+                    <filter string="By name" name="name" context="{'group_by':'name'}"/>
+                    <filter string="Customer" name="customer" context="{'group_by':'customer'}"/>
+                    <filter string="Lead" name="lead" context="{'group_by':'lead'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+</odoo>
