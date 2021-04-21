@@ -11,7 +11,8 @@ Demo lesson for N-Dev.
 """,
     'depends': ['base', 'product'],
     'data': [
-        'views/demo.xml'
+        'wizards/fill_form.xml',
+        'views/demo.xml',
     ],
     'demo': [],
     'installable': True,

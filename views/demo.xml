@@ -7,13 +7,11 @@
         <field name="view_mode">list,kanban,search,form</field>
     </record>
 
-
     <menuitem name="Demo"
               id="main_demo_menu"
-              sequence="0"/>
+              sequence="0" action="demo_list_action"/>
 
-    <menuitem id="demo_courses_menu" name="New Demo"
-              parent="main_demo_menu" action="demo_list_action"/>
+
 
     <!--tree of demo model-->
     <record model="ir.ui.view" id="demo_tree_view">
@@ -27,7 +25,6 @@
                 <field name="saleperson"/>
                 <field name="lead"/>
                 <field name="state" widget="state_selection"/>
-
             </tree>
         </field>
     </record>
@@ -37,11 +34,15 @@
         <field name="model">demo.demo</field>
         <field name="arch" type="xml">
             <form string="Demo Form">
-<!--                <button string="FINDME" type="action" name="form_view_auto_fill"-->
-<!--                        states="draft" class="oe_stat_button"/>-->
                 <sheet>
-<!--                    <button string="FINDME" type="action" name="form_view_auto_fill"-->
-<!--                            states="draft" class="oe_stat_button"/>-->
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="button_demo_count"
+                                string="Demo" type="object" icon="fa-code"/>
+                    </div>
+                    <header>
+                        <button name="%(demo.fill)d" type="action" string="New Demo"
+                                context="{'default_filling_customer': 'Demo_customer', 'default_filling_saleperson': 'Demo_sale'}"/>
+                    </header>
                     <group>
                         <field name="customer"/>
                         <field name="done_date"/>
